@@ -10,7 +10,15 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://resume-frontend.vercel.app"  // 👉 change this to your real frontend Vercel URL
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 // ✅ Debug: print MongoDB URI to ensure .env is working
